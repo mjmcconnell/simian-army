@@ -57,3 +57,12 @@ src/main/resources/chaos.properties
     simianarmy.chaos.ASG.enabled=false
     simianarmy.chaos.ASG.monkey-target.enabled=true
     simianarmy.chaos.ASG.monkey-target.probability=1.0
+
+
+# Cleanup
+
+    aws autoscaling update-auto-scaling-group --auto-scaling-group-name monkey-target --min-size 0 --max-size 0
+    aws autoscaling delete-auto-scaling-group --auto-scaling-group-name monkey-target
+    aws autoscaling delete-launch-configuration --launch-configuration-name lc1
+
+
