@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  army:
+    build:
+      context: ./
+      dockerfile: /Dockerfile.army
+    env_file:
+      - .env
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    volumes:
+      - ./army:/opt
+    working_dir: /opt
+
+  aws:
+    image: mesosphere/aws-cli:latest
+    env_file:
+      - .env
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+    working_dir: /root/app
+    command: bash
