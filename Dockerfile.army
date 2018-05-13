@@ -4,7 +4,6 @@ RUN apt-get update && apt-get install -y vim git openjdk-8-jdk
 
 WORKDIR /opt
 
-RUN git clone git://github.com/Netflix/SimianArmy.git .
-RUN ./gradlew build
+RUN cd /opt && git clone git://github.com/Netflix/SimianArmy.git . && ./gradlew build
 
 CMD bash

@@ -4,7 +4,7 @@ services:
   army:
     build:
       context: ./
-      dockerfile: /Dockerfile.army
+      dockerfile: Dockerfile.army
     env_file:
       - .env
     environment:
@@ -14,7 +14,8 @@ services:
     volumes:
       - ./army:/opt
     working_dir: /opt
-
+    ports:
+      - 8080:8080
   aws:
     image: mesosphere/aws-cli:latest
     env_file:
